@@ -33,3 +33,5 @@ docker run -d -v $(pwd):/src -p 8002:3000 --name kanban node790
 10. 使用微信扫码登录，需要电脑和手机使用同一个WIFI，不然回调进不来
 11. 完成
 ![](./public/images/kanban.png)
+
+The MIT License (MIT)
