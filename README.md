@@ -25,7 +25,7 @@ npm install
 ```
 docker build -t node790 .
 ```
-8. 运行看板容器
+8. 在项目根目录下运行`看板`容器
 ```
 docker run -d -v $(pwd):/src -p 8002:3000 --name kanban node790
 ```
