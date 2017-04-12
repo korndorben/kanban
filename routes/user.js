@@ -1,16 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const qrcode = require('qr-image');
-// const marked = require('marked');
 const auth = require('../middleware/socket.middleware');
 const des = require('../util/descrypto');
 const userservice = require('../services/pg.user.service.js');
 
 /*
-    appID: 'wxa2cda4c640f7a44a',
-    appSecret: '081a080bba01f7b65b70af7d31702e45',
-
-
     { openid: 'o_BHRjkf8pTdgsCQh3-N_fXHxTLQ',
   nickname: '呢喃',
   sex: '1',
