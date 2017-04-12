@@ -29,7 +29,7 @@ docker build -t node790 .
 ```
 docker run -d -v $(pwd):/src -p 8002:3000 --name kanban node790
 ```
-9. 找到本机的IP地址，访问例如[http://192.168.0.100:3000](http://192.168.0.100:3000)地址
+9. 找到本机的IP地址，访问例如[http://10.0.0.100:8002](http://10.0.0.100:8002)地址
 10. 使用微信扫码登录，需要电脑和手机使用同一个WIFI，不然回调进不来
 11. 完成
 ![](./public/images/kanban.png)
