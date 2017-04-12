@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>需要池Backlog</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/superera.css" />
+    <link rel="stylesheet" href="/css/kanban.css" />
+    <link rel="stylesheet" href="/css/site.css" />
+</head>
+
+<body>
+    <div class="navbar navbar-inverse navbar-static-top">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">看板fKanban</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a title="Manage">您好，<%=locals.user.nickname %>!</a>
+                </li>
+                <li>
+                    <a href="/logout">退出Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!--content.begin-->
+    <div class="container-fluid" id="app">
+        <div class="col-md-12">
+            <div class="row kanban-header">
+                <div class="col-md-2 hidden-xs hidden-sm">重要性Importance</div>
+                <div class="col-md-4"><a href="/task/add?t=us">+用户故事User Story</a></div>
+                <div class="col-md-2 hidden-xs hidden-sm">初始估算Estimate</div>
+                <div class="col-md-2 hidden-xs hidden-sm">负责人Master</div>
+                <div class="col-md-2 hidden-xs hidden-sm">管理Manage</div>
+            </div>
+
+            <div class="row kanban-row" v-for="task in tasks">
+                <div class="col-md-2">
+                    <span class="f_importance">{{ task.importance }}</span>
+                </div>
+                <div class="col-md-4">
+                    <span class="Id">{{ task.id }}</span>
+                    <a :href="'/kb'+task.id+'.html'">
+                        <span class="Name">{{ task.title }}</span>
+                    </a>
+                    <br>
+                    <span class="business-value">完成度(100%)</span>
+                </div>
+                <div class="col-md-2 hidden-xs hidden-sm">
+                    <mark>{{ task.estimate }}</mark>人天
+                </div>
+                <div class="col-md-2 hidden-xs hidden-sm">
+                    {{ task.author }}
+                </div>
+                <div class="col-md-2">
+                    <a class="modify" :href="'/task/edit'+task.id+'.html?t=us&type=update'">编辑(E)</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </div>
+    <script src="/js/jquery-2.1.1.min.js"></script>
+    <script src="/js/vue.js"></script>
+    <script type="text/javascript">
+        var app = new Vue({
+            el: '#app',
+            data: {
+                tasks: []
+            }
+        })
+        $.post('/task/all', function(data) {
+            if (data.code == 1) return;
+            for (let m of data.data) {
+                app.tasks.push(m)
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,76 @@
+﻿body {
+    padding-top: 0px;
+    /*padding-bottom: 70px;    */
+}
+
+.navbar-right {
+    margin-right:auto !important;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding: 0 15px;
+    /*padding-bottom: 30px;*/
+    max-height: 100%;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+/*.breadcrumb
+{
+    background-image:url(/Images/bakcgoundimage01.jpg)
+}*/
+hr {
+    margin-top:0px;
+}
+
+.left-menu {
+
+}
+
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+textarea {
+    max-width: 480px;
+}
+
+/* styles for validation helpers */
+.field-validation-error {
+    color: #b94a48;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #b94a48;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+
+.c0,.c1{
+    color: #fff;
+    border-bottom: 1px dashed #ccc;
+    background: #dedede;
+    background: -moz-linear-gradient(left, #dedede 80%, #ff6600 80%, #f8f8f8 80%);
+    background: -webkit-linear-gradient(left, #dedede 80%,#ff6600 80%,#f8f8f8 80%);
+    background: linear-gradient(to right, #dedede 80%,#ff6600 80%,#f8f8f8 80%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dedede', endColorstr='#f8f8f8',GradientType=1 );
+}

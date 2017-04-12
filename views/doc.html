@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+        <%-task.title%>
+    </title>
+    <link rel="stylesheet" href="/css/editormd.preview.min.css" />
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/doc.css" />
+</head>
+
+<body>
+    <div class="col-md-12 title">
+        <h2 id="title"><%=task.title%> <small><a id="edit" href="/doc/edit<%=task.id%>.html">编辑</a></small></h2>
+        <h4 id="author" id="author"><%=task.author%> <small>创建于<%=task.created%>，最近更新<%=task.lastupdated%>
+        </small></h4>
+        <hr />
+        <textarea id="md"><%-task.content%></textarea>
+    </div>
+    <div id="editormd-preview">
+    </div>
+    <div class="col-md-12 foot">
+        <a id="add" href="/doc/add">新建文档(N)</a>
+        <a id="edit" href="/doc/edit<%=task.id%>.html">编辑文档(E)</a>
+    </div>
+    <script src="/js/jquery-2.1.1.min.js"></script>
+    <script src="/lib/marked.min.js"></script>
+    <script src="/lib/prettify.min.js"></script>
+    <script src="/lib/raphael.min.js"></script>
+    <script src="/lib/underscore.min.js"></script>
+    <script src="/lib/sequence-diagram.min.js"></script>
+    <script src="/lib/flowchart.min.js"></script>
+    <script src="/lib/jquery.flowchart.min.js"></script>
+    <script src="/js/editormd.min.js"></script>
+    <script type="text/javascript">
+        var doc_id = <%=task.id%>;
+        $(function() {
+            $(document).keydown(function (e) {
+                console.log(e);
+                switch (e.key){
+                    case 'e':
+                        location.href = ["/doc/edit",doc_id,'.html'].join('');
+                        break;
+                    case 'n':
+                        location.href = "/doc/add";
+                        break;
+                }
+            })
+
+            editormd.markdownToHTML("editormd-preview", {
+                markdown: $('#md').text(),
+                //htmlDecode      : true,       // 开启 HTML 标签解析，为了安全性，默认不开启
+                htmlDecode: "style,script,iframe", // you can filter tags decode
+                toc             : true,
+                // tocm: true, // Using [TOCM]
+                //tocContainer    : "#custom-toc-container", // 自定义 ToC 容器层
+                gfm             : true,
+                //tocDropdown     : true,
+                // markdownSourceCode : true, // 是否保留 Markdown 源码，即是否删除保存源码的 Textarea 标签
+                emoji: true,
+                taskList: true,
+                tex: true, // 默认不解析
+                flowChart: true, // 默认不解析
+                sequenceDiagram: true, // 默认不解析
+            });
+        });
+    </script>
+</body>
+</html>

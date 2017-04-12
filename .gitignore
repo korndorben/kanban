@@ -1,0 +1,13 @@
+.DS_Store
+Thumbs.db
+.idea
+.vscode
+node_modules
+app/bower_components
+_backups
+.sass-cache
+app/*
+.tmp
+editor.md
+jieba
+.vscode

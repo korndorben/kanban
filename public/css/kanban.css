@@ -1,0 +1,302 @@
+html, body {
+    height: 100%;
+    /* IMPORTANT!!! stretches viewport to 100% */
+    font-size: 14px;
+}
+
+.container-fluid {
+    /*position: absolute;*/
+    /*width: 100%;*/
+    /*top: 51px;*/
+    /*bottom: 60px;*/
+    /*background-image: url(/images/bg01.jpg);*/
+    background-size: 100% 100%
+}
+
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:hover, .navbar-inverse .navbar-nav>.active>a:focus{
+    background-color: transparent;
+}
+
+.Kanban {
+    width: 100%;
+    font-size: 12px;
+    /*margin-bottom: 100px;*/
+}
+
+.Kanban a:hover {
+    color: #333;
+}
+
+.Kanban .kanban-header-goal a:hover {
+    color: #FFF;
+    text-decoration: underline;
+}
+
+.kanban-header, .kanban-header td {
+    font-weight: bold;
+    font-family: MV Boli, Verdana;
+    font-size: 20px;
+    height: 40px;
+}
+
+.kanban-box, .kanban-box div {
+    vertical-align: middle;
+}
+
+td.kanban-header-goal, td.kanban-header-todo, td.kanban-header-doing, td.kanban-header-done {
+    text-align: center;
+}
+
+
+/* kanban */
+
+div[class$=todo], div[class$=doing], div[class$=done] {
+    width: 30%;
+    border-left: 1px dashed #444;
+}
+
+
+/* Goal */
+
+.goal-item, .goal-item-1 {
+    min-width: 230px;
+    background-color: #fff;
+    margin: 0 1em 1em 1em;
+    padding: 4px;
+    width: 200px;
+    min-height: 160px;
+    border-bottom-right-radius: 10px;
+    -moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2), 2px 2px 2px rgba(0, 0, 0, .2), 3px 3px 0 #fff, 4px 4px 0 rgba(0, 0, 0, .2), 6px 6px 0 #fff, 0 10px 0 rgba(0, 0, 0, .2);
+    -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2), 2px 2px 2px rgba(0, 0, 0, .2), 3px 3px 0 #fff, 4px 4px 0 rgba(0, 0, 0, .2), 6px 6px 0 #fff, 0 10px 0 rgba(0, 0, 0, .2);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2), 2px 2px 2px rgba(0, 0, 0, .2), 3px 3px 0 #fff, 4px 4px 0 rgba(0, 0, 0, .2), 6px 6px 0 #fff, 0 10px 0 rgba(0, 0, 0, .2);
+}
+
+.goal-item-header {
+    border-bottom: 1px solid #cbcc99;
+    padding: 4px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.goal-item-content {
+    font-size: 14px;
+    padding: 4px;
+    background: #EEE;
+    border-bottom: 1px solid #CBCC99;
+    min-height: 120px;
+}
+
+.goal-item-content span {
+    display: table-row;
+    font-family: 'Cordia New';
+    font-size: 14px;
+}
+
+.goal-item-manage {
+    padding: 10px;
+    font-size: 13px;
+    text-align: right;
+}
+
+.goal-item-manage a {
+    text-decoration: underline;
+}
+
+.goal-item-addTaskLink {
+    text-align: right;
+}
+
+.addgoal {
+    background-color: #fff;
+    padding-bottom: 20px;
+}
+
+
+/* task */
+
+.kanban-item, .kanban-item-0, .kanban-item-1, .kanban-item-2, .kanban-item-3, .kanban-item-4 {
+    margin: 0 1em 1em 1em;
+    padding: 4px;
+    width: 200px;
+    min-height: 160px;
+    float: left;
+    text-transform: capitalize;
+    background: linear-gradient(top, #FFF9B5, #D4CD1B);
+    background: -webkit-linear-gradient(#FFF9B5, #D4CD1B);
+    /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#FFF9B5, #D4CD1B);
+    /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#FFF9B5, #D4CD1B);
+    /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#FFF9B5, #D4CD1B);
+    /* Standard syntax */
+    text-transform: uppercase;
+    border: 2px solid #fff;
+    /*border-radius: 4px;*/
+    border-top-right-radius: 10px;
+    text-overflow:ellipsis;
+    overflow:hidden; white-space:nowrap;
+}
+
+.kanban-item-0 {
+    transform: rotate(-2deg);
+}
+
+.kanban-item-1 {
+    transform: rotate(1deg);
+}
+
+.kanban-item-2 {
+    transform: rotate(-1deg);
+}
+
+.kanban-item-3 {
+    transform: rotate(2deg);
+}
+
+.kanban-item-4 {
+    transform: rotate(-2deg);
+}
+
+.kanban-item-primary {
+    background: linear-gradient(top, #CECDE9, #9E9AE5);
+    background: -webkit-linear-gradient(#CECDE9, #9E9AE5);
+    /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#CECDE9, #9E9AE5);
+    /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#CECDE9, #9E9AE5);
+    /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#CECDE9, #9E9AE5);
+    /* Standard syntax */
+}
+
+.kanban-row {}
+
+.kanban-row-goal {
+    min-width: 200px;
+    padding: 10px;
+    vertical-align: top;
+}
+
+.kanban-row-goal, .kanban-row-todo, .kanban-row-doing, .kanban-row-done {
+    border-left: solid 1px #444;
+    border-top: solid 1px #444;
+    width: 33%;
+    padding: 10px;
+    vertical-align: top;
+}
+
+.kanban-row-goal {
+    width: 230px;
+    border-left: dashed 0px #444;
+}
+
+.kanban-box {}
+
+.kanban-item-header {
+    font-size: 14px;
+}
+
+.kanban-item-content {
+    height: 60px;
+    white-space: normal;
+    -ms-text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    text-transform: capitalize;
+}
+
+.kanban-item-author img {
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    height: 70px;
+    width: 70px;
+}
+
+.slider-ctrl-con {
+    display: inline-block;
+    width: 24px;
+    height: 10px;
+    margin: 0 1px;
+    text-indent: -10em;
+    overflow: hidden;
+    cursor: pointer;
+    background-color: #e8e8e8;
+}
+
+.ribbon-wrapper-green {
+    width: 85px;
+    height: 88px;
+    overflow: hidden;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+.ribbon-green {
+    text-align: center;
+    transform: rotate(45deg);
+    position: relative;
+    padding: 20px 0;
+    left: 0px;
+    top: 0px;
+    width: 120px;
+    background: #f8f8f8;
+    opacity: 0.5;
+    cursor: move;
+    content: "";
+}
+
+.ribbon-green:hover {
+    /*opacity: 1;*/
+    /*background: #f8f8f8;*/
+}
+
+.ribbon-green:before, .ribbon-green:after {
+    content: "";
+    /* Colour of the triangle. To flip the effect, use border-bottom. */
+    /*border-top: 3px solid #6e8900;
+    border-left: 3px solid transparent;
+    border-right: 3px solid transparent;
+    position: absolute;
+    bottom: -3px;*/
+    /* +1 to compensate for the border */
+}
+
+.ribbon-green:before {
+    left: 0px;
+}
+
+.ribbon-green:after {
+    right: 0px;
+}
+
+​ tr, th {
+    background: transparent;
+}
+
+.report{
+    font-size: 16px;
+    border-bottom: 1px solid #ccc;
+    padding: 10px;
+}
+.report-r{
+    padding: 5px;
+}
+.pager{
+    text-align: right;
+}
+.back{
+    border-top: 1px solid #eee;
+    margin-top: 1rem;
+    padding-top: 1rem;
+}
+.content{
+    height: 100%;
+}
+
+.v100{
+    min-height: 100%;
+}

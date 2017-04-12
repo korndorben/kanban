@@ -1,0 +1,48 @@
+@charset "UTF-8";
+html, body {
+    background-color: #fff;
+    font-family: '微软雅黑';
+    font-weight:300;
+    font-size:14px;
+}
+.container:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 3px;
+    background: -webkit-linear-gradient(right, #eef0f3 10%, #b8c3e9 40%, #eb5055 70%, #eb5055 90%);
+    background: linear-gradient(-90deg, #eef0f3 10%, #b8c3e9 40%, #eb5055 70%, #eb5055 90%);
+}
+.container{
+    display:flex;
+    flex-direction:column;
+}
+.row{
+    flex:1;
+    display:flex;
+}
+
+.col{
+    flex:1;
+    display:flex;
+    text-align:center;
+}
+.head{
+    font-size: 1.5rem;
+    font-family: MV Boli,Verdana;
+    font-weight: bolder;
+    padding: 0.5rem;
+}
+.f_importance {
+    text-align: right;
+    vertical-align: middle;
+    font-family: Verdana;
+    font-weight: bold;
+    font-size: 36px;
+    color: #444;
+}
+.title{
+    font-size:1.5rem;
+}

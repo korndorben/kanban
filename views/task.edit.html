@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="utf-8" />
+    <title>
+        <%=task.title%>
+    </title>
+    <link rel="stylesheet" href="/css/editormd.css" />
+    <link rel="stylesheet" href="/css/toastr.min.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/doc.css" />
+    <link rel="stylesheet" href="/css/task.css" />
+    <style>
+        #editormd {
+            min-height: 30rem;
+            background-color: #fff;
+            background-image: none;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="col-md-12 title">
+        <h2><%=_title%> <small></small></h2>
+        <div class="form-horizontal">
+            <hr>
+            <div class="form-group">
+                <label class="control-label col-md-2" for="title">名称</label>
+                <div class="col-md-10">
+                    <input class="form-control" id="title" name="title" placeholder="title" type="text" value="<%=task.title%>">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2" for="importance">重要性</label>
+                <div class="col-md-10">
+                    <input class="form-control" id="importance" name="importance" type="text" value="<%=task.importance%>">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2" for="estimate">初始估算</label>
+                <div class="col-md-10">
+                    <input class="form-control" id="estimate" name="estimate" type="number" value="<%=task.estimate%>">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2" for="author">负责人</label>
+                <div class="col-md-10">
+                    <input class="form-control typeahead" id="author" name="author" type="text" value="<%=task.author%>">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2" for="notes">描述</label>
+                <div class="col-md-10">
+                    <div id="editormd">
+                        <textarea style="display:none;"><%=task.content%></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input name="btn" id="btn" type="button" value="保存" class="btn btn-default">
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" id="docid" value="<%=id%>" />
+    <input type="hidden" id="type" value="<%=type%>" />
+    <input type="hidden" id="parentid" value="<%=parentid%>" />
+    <input type="hidden" id="t" value="<%=t%>" />
+    <input type="hidden" id="status" value="<%=status%>" />
+    <script src="/js/jquery-2.1.1.min.js"></script>
+    <script src="/js/editormd.js"></script>
+    <script src="/js/toastr.min.js"></script>
+    <script type="text/javascript">
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-bottom-center",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+
+        var editor;
+        var doc_id = $('#docid').val()
+        function save() {
+            $.post(['/task/', doc_id, '.html'].join(''), {
+                id: doc_id,
+                title: $('#title').val(),
+                usid:$('#usid').val(),
+                parentid:$('#parentid').val(),
+                content: editor.getMarkdown(),
+                author: $('#author').val(),
+                importance:$('#importance').val(),
+                estimate:$('#estimate').val(),
+                status:$('#status').val(),
+                type: $('#type').val(),
+                t:$('#t').val()
+            }, function(data) {
+                toastr["success"](data.msg, '提示');
+                if(data.code ==0){
+                    $('#type').val('update')
+                }
+            })
+        }
+        $(document).on('keydown', function(event) {
+            if (event.ctrlKey || event.metaKey) {
+                switch (String.fromCharCode(event.which).toLowerCase()) {
+                    case 's':
+                        event.preventDefault();
+                        save();
+                        break;
+                    case 'p':
+                        event.preventDefault();
+                        location.href = [location.origin, '/task', doc_id, '.html'].join('');
+                        break;
+                }
+            }
+        });
+        $(function() {
+            editor = editormd("editormd", {
+                width: "100%",
+                autoHeight: true,
+                theme: "default",
+                previewTheme: "default",
+                editorTheme: "default",
+                toolbar: true,
+                toolbarAutoFixed: true,
+                watch: false,
+                path: '/lib/',
+                toolbarIcons: function() {
+                    return ["save", "undo", "redo", "bold", "italic", "del", "quote", "hr", "image", "link", "list-ul", "list-ol", "code", "code-block", "table"]
+                },
+                toolbarCustomIcons: {
+                    save: "<a><i class=\"fa fa-save\" onclick=\"javascript:save();\"></i> </a>"
+                },
+                onload: function() {
+                    var keyMap = {
+                        "Ctrl-M": function(cm) {
+                            $.proxy(editor.toolbarHandlers.watch, editor)();
+                        },
+                    };
+                    this.addKeyMap(keyMap);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

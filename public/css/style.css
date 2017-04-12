@@ -1,0 +1,107 @@
+body {
+    background: #2c2c2c;
+    /*font-family:'Source Code Pro','微软雅黑', "Trebuchet MS", Verdana, Helvetica, Sans-Serif;*/
+    font-family:'微软雅黑','Source Code Pro', "Trebuchet MS", Verdana, Helvetica, Sans-Serif;
+    font-weight: 300;
+    color: #808080;
+    font-size: 14px;
+}
+
+.body-content {
+    padding: 0 15px;
+    /*padding-bottom: 30px;*/
+    max-height: 100%;
+    background-color: #2c2c2c;
+}
+
+mark {
+    background-color: #666;
+    font-family: Verdana, 微软雅黑;
+    -webkit-transform: rotate(-2deg);
+    -moz-transform: rotate(-2deg);
+    -o-transform: rotate(-2deg);
+    transform: rotate(-2deg);
+}
+
+a:link,
+a:visited,
+a:active {
+    color: #444;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #ccc;
+    text-decoration: underline;
+}
+
+.kanban-header {
+    color: #fff;
+}
+
+    .kanban-header a:link,
+    .kanban-header a:visited,
+    .kanban-header a:active,
+    .kanban-header a:hover {
+        color: #fff;
+        text-decoration: underline;
+    }
+
+
+    /*
+-webkit-input-placeholder:color:red;
+*/
+    /* 用户故事列表 */
+
+    .kanban-header div {
+        color: White;
+        font-weight: bold;
+        min-height: 40px;
+        font-family: MV Boli,Verdana;
+        /*font-size: 16px;*/
+        vertical-align: middle;
+        line-height: 40px;
+    }
+
+    .kanban-header span {
+        font-family: 'Cordia New';
+        font-size: 14px;
+    }
+
+.kanban-row {
+}
+
+    .kanban-row a {
+        color: #fff;
+    }
+
+.f_importance {
+    text-align: right;
+    vertical-align: middle;
+    font-family: Verdana;
+    font-weight: bold;
+    font-size: 36px;
+    color: #aaa;
+}
+
+.Id {
+    font-size: 13px;
+    font-family: Verdana;
+    color: #eee;
+}
+
+.Name {
+    font-size: 18px;
+}
+
+.business-value {
+    font-size: 14px;
+    font-family: Verdana;
+    color: #666;
+}
+
+.remove, a.remove {
+    font-size: 16px;
+    color: #555;
+    vertical-align: bottom;
+}

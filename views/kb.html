@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>看板kb<%=parentid%></title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/superera.css" />
+    <link rel="stylesheet" href="/css/kanban.css" />
+    <link rel="stylesheet" href="/css/site.css" />
+</head>
+
+<body>
+    <div class="navbar navbar-inverse navbar-static-top">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">看板Kanban</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a title="Manage">您好，<%=locals.user.nickname %>!</a>
+                </li>
+                <li>
+                    <a href="/logout">退出Logout</a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="container-fluid">
+        <div class="col-md-12">
+            <table class="Kanban" id="app">
+                <tbody>
+                    <tr class="kanban-header">
+                        <td class="kanban-header-todo">
+                            <a href="/task/add?t=task&parentid=<%=parentid%>">+未开始To do</a>
+                        </td>
+                        <td class="kanban-header-doing">
+                            进行中Doing
+                            <span></span>
+                        </td>
+                        <td class="kanban-header-done">
+                            已完成Done
+                        </td>
+                    </tr>
+
+                    <tr class="kanban-box">
+                        <td class="kanban-row-todo" data-status="0">
+                            <div class="_container" v-for="task in f(0)">
+                                <task :task="task"></task>
+                            </div>
+                        </td>
+                        <td class="kanban-row-doing" data-status="1">
+                            <div class="_container" v-for="task in f(1)">
+                                <task :task="task"></task>
+                            </div>
+                        </td>
+                        <td class="kanban-row-done" data-status="2">
+                            <div class="_container" v-for="task in f(2)">
+                                <task :task="task"></task>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <input type="hidden" id="parentid" value="<%=parentid%>">
+    <script type="text/x-template" id="task-list-template">
+        <div class="kanban-item kanban-item-3" :data-id="task.id">
+            <div class="ribbon-wrapper-green">
+                <div class="ribbon-green">
+                </div>
+            </div>
+            <div class="kanban-item-header">
+                <a :href="'/task/edit'+task.id+'.html?t=task&parentid=<%=parentid%>'" title="点击编辑">
+                        {{task.title}}
+                </a>
+            </div>
+            <div class="kanban-item-content">
+                {{task.content}}
+            </div>
+            <div class="kanban-item-author">
+                <img src="/images/user.jpg" />
+            </div>
+            <div class="kanban-item-Duration" data-duration="6">
+                <a href="#">
+                        {{task.author}} {{task.estimate}}
+                </a>
+            </div>
+        </div>
+    </script>
+    <script src="/js/jquery-2.1.1.min.js"></script>
+    <script src="/js/jquery-ui.min.js"></script>
+    <script src="/js/vue.js"></script>
+    <script>
+        Vue.component('task', {
+            props: ['task'],
+            template: '#task-list-template'
+        })
+        var app = new Vue({
+            el: '#app',
+            data: {
+                tasks: []
+            },
+            methods: {
+                f: function(status) {
+                    return this.tasks.filter(function(task) {
+                        console.log(task);
+                        return task.status == status
+                    })
+                },
+            },
+            updated: function() {
+                $(".kanban-item").draggable({
+                    helper: "clone",
+                    opacity: 0.85,
+                    cursor: "move",
+                    handle: ".ribbon-green",
+                });
+
+                $("td[class^=kanban-row]").droppable({
+                    accept: ".kanban-item",
+                    drop: function(event, ui) {
+                        $(this).append(ui.draggable);
+                        $.post(['/task/status.html'].join(''), {
+                            id: ui.draggable.attr("data-id"),
+                            status: $(this).attr("data-status")
+                        }, function(r) {
+                            console.log(r);
+                        })
+                    }
+                });
+            }
+        })
+        $.post(['/task/by_parentid', $('#parentid').val()].join(''), function(data) {
+            if (data.code == 1) return;
+            for (t of data.data) {
+                app.tasks.push(t)
+            }
+        })
+    </script>
+
+</body>
+
+</html>

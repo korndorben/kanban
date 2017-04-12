@@ -1,0 +1,235 @@
+/* Sticky footer styles
+-------------------------------------------------- */
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+.navbar {
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    border-radius: 0;
+    margin-bottom: 0;
+}
+
+#footer {
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    background-color: #222222;
+    background-image: url(/Images/debut_dark_footer.png);
+}
+
+#footer a {
+    color: #999;
+    text-decoration: none;
+}
+
+#footer a:focus {
+    color: #fff;
+    text-decoration: underline;
+}
+
+
+/* 左侧搜索样式.begin */
+
+.breadcrumb {
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    border-radius: 0;
+    padding: 15px 45px 15px 15px;
+    position: relative;
+    height: 51px;
+}
+
+.search-box {
+    float: right;
+}
+
+.sidebar-search {
+    margin: -3px 0 0 0;
+    padding: 0 0px 0 5px;
+    display: inline-block;
+    background: #E4E5E6;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    color: #555555;
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    min-height: 28px;
+    min-width: 28px;
+}
+
+.sidebar-search input {
+    background: none;
+    border: none;
+    width: 130px;
+    -moz-border-radius: 0 0 0 0 !important;
+    -webkit-border-radius: 0 0 0 0 !important;
+    border-radius: 0 0 0 0 !important;
+    color: #858585;
+    font-family: inherit;
+    font-size: 14px;
+    line-height: 1.2;
+    padding: 5px 4px;
+    -moz-transition-duration: 0.1s;
+    -o-transition-duration: 0.1s;
+    -webkit-transition-duration: 0.1s;
+    transition-duration: 0.1s;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    outline: 0 none;
+}
+
+.sidebar-search input:focus {
+    width: 200px;
+}
+
+.sidebar-search .form-group {
+    margin: 0;
+    padding: 0;
+}
+
+
+/* 左侧搜索样式.begin */
+
+.navbar-inverse {
+    background-image: url(/images/debut_dark.png);
+}
+
+
+/* Custom page CSS
+-------------------------------------------------- */
+
+
+/* Not required for template or sticky footer method. */
+
+.container .text-muted {
+    margin: 20px 0;
+}
+
+#footer>.container {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+code {
+    font-size: 80%;
+}
+
+.list-group-item {
+    padding: 0px;
+}
+
+.body-nav {
+    min-height: 450px;
+    padding: 0px !important;
+}
+
+.vmenu li, h5.vmenu {
+    line-height: 13px;
+    margin: 0 0 10px 0;
+    background: url(/images/list-pointer.png) center right no-repeat;
+    list-style: none;
+}
+
+.vmenu a, h5.vmenu a {
+    background-color: #ffffff;
+    padding-right: 10px;
+}
+
+.voffset {
+    margin-top: 2px;
+}
+
+.voffset1 {
+    margin-top: 5px;
+}
+
+.voffset2 {
+    margin-top: 10px;
+}
+
+.voffset3 {
+    margin-top: 15px;
+}
+
+.voffset4 {
+    margin-bottom: 30px;
+}
+
+.voffset5 {
+    margin-top: 40px;
+}
+
+.voffset6 {
+    margin-top: 60px;
+}
+
+.voffset7 {
+    margin-top: 80px;
+}
+
+.voffset8 {
+    margin-top: 100px;
+}
+
+.voffset9 {
+    margin-top: 150px;
+}
+
+.page-container {
+    min-height: 600px;
+}
+
+.body-nav a, .body-content a {
+    padding: 0;
+}
+
+.body-nav a:hover, .body-content a:hover {
+    color: #ddd;
+}
+
+#WeChat, #Users, .body-nav h4 {
+    padding: 0px;
+}
+
+.team {
+    margin-bottom: 2rem;
+}
+
+.contributer {
+    min-width: 100px;
+}
+
+.contributer:hover {
+    color: #ff6600;
+    cursor: pointer;
+}
+
+.dropdown-menu>.active>a, .dropdown-menu>.active>a:hover, .dropdown-menu>.active>a:focus {}
+
+.dropdown-menu>li{
+    padding: 5px;
+    cursor: pointer;
+}
+.dropdown-menu>li.active{
+    text-decoration: none;
+    background-color: #e8f2ff;
+    outline: 0;
+}
+
+.dropdown-menu>li>img {
+    width: 40px;
+    height: 40px;
+    cursor: hand;
+    border-radius: 50%;
+}
+
+.dropdown-menu>li>a {
+    display: inline;
+}

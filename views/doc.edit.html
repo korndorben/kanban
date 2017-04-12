@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="utf-8" />
+    <title>
+        <%=task.title%>
+    </title>
+    <link rel="stylesheet" href="/css/editormd.css" />
+    <link rel="stylesheet" href="/css/toastr.min.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/doc.css" />
+    <style>
+        #editormd {
+            min-height: 30rem;
+            background-color: #fff;
+            background-image: none;
+            border-top: 1px solid #ccc;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="col-md-12 title">
+        <h2 class="filed" id="title" contenteditable><%=task.title%> </h2>
+        <h4 class="filed" id="author" contenteditable id="author"><%=task.author%></h4>
+    </div>
+    <div id="editormd">
+        <textarea style="display:none;"><%=task.content%></textarea>
+    </div>
+    <input type="hidden" id="docid" value="<%=task.id%>"  / >
+    <input type="hidden" id="type" value="<%=task.type%>"  / >
+    <script src="/js/jquery-2.1.1.min.js"></script>
+    <script src="/js/editormd.js"></script>
+    <script src="/js/toastr.min.js"></script>
+    <script type="text/javascript">
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-bottom-center",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+
+        var editor;
+        var doc_id = $('#docid').val()
+        function save() {
+            $.post(['/doc/', doc_id,'.html'].join(''), {
+                id: doc_id,
+                title: $('#title').text(),
+                content: editor.getMarkdown(),
+                author: $('#author').text(),
+                type: $('#type').val()
+            }, function(data) {
+                toastr["success"](data.msg, '提示');
+                console.log(data);
+                $('#type').val('update')
+            })
+        }
+        $(document).on('keydown', function(event) {
+            if (event.ctrlKey || event.metaKey) {
+                switch (String.fromCharCode(event.which).toLowerCase()) {
+                case 's':
+                    event.preventDefault();
+                    save();
+                    break;
+                case 'p':
+                    event.preventDefault();
+                    location.href = [location.origin,'/doc',doc_id,'.html'].join('');
+                    break;
+                }
+            }
+        });
+        $(function() {
+            editor = editormd("editormd", {
+                width: "100%",
+                autoHeight: true,
+                theme: "default",
+                previewTheme: "default",
+                editorTheme: "default",
+                toolbar: true,
+                toolbarAutoFixed: true,
+                // markdown : 'md',
+                // codeFold : true,
+                // emoji: true,
+                watch: false,
+                path: '/lib/',
+                toolbarIcons: function() {
+                    return ["save","undo", "redo", "bold", "italic", "del", "quote", "hr", "image","link", "list-ul", "list-ol", "code", "code-block", "table"]
+                },
+                toolbarCustomIcons : {
+                    save : "<a><i class=\"fa fa-save\" onclick=\"javascript:save();\"></i> </a>"
+                },
+                onload: function() {
+                    var keyMap = {
+                        "Ctrl-M":function (cm) {
+                            $.proxy(editor.toolbarHandlers.watch, editor)();
+                        },
+                    };
+
+                    this.addKeyMap(keyMap);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

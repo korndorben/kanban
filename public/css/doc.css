@@ -1,0 +1,43 @@
+@charset "UTF-8";
+*:focus {
+    outline: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    text-transform: Uppercase;
+}
+.foot{
+    border-top:1px solid #dedede;
+    padding:1rem;
+}
+#editormd{
+    min-height:30rem;
+    background-color: #fff;
+    background-image: none;
+    border: 0px solid #ccc;
+    border-radius: 4px;
+}
+.editormd-toolbar {
+     border-bottom: 0px;
+}
+.title:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 3px;
+    background: -webkit-linear-gradient(right, #eef0f3 10%, #b8c3e9 40%, #eb5055 70%, #eb5055 90%);
+    background: linear-gradient(-90deg, #eef0f3 10%, #b8c3e9 40%, #eb5055 70%, #eb5055 90%);
+}
+
+html, body {
+    background-color: #fff;
+    font-family: '微软雅黑';
+    font-weight:300;
+    font-size:14px;
+}
+
+textarea#md {
+    display: none;
+}

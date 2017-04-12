@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>登录login</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <style>
+        body {
+            padding-top: 120px;
+        }
+
+        img {
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="col-md-offset-4 col-md-8">
+        <h3>文档 <small>微信扫码登录</small></h3>
+        <ol>
+            <li>仅公司内部可访问</li>
+            <li>手机需要和电脑在同一个WIFI网络中</li>
+            <li>打开微信扫一扫，授权成功后页面会自动跳转</li>
+        </ol>
+        <img class="wechat" src="/qrimage?uuid=<%=uuid%>">
+    </div>
+    <input type="hidden" id="refer" name="refer" value="<%=refer%>">
+    <script src="/js/socket.io.min.js"></script>
+    <script src="/js/jquery-2.1.1.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script>
+        socket = io(location.host + '/hubot', {
+            transports: ['websocket']
+        })
+        socket.emit('join', {
+            uuid: '<%=uuid%>'
+        });
+        socket.on('notify', function(data) {
+            console.log(data);
+            $.post(['/login/', data.unionid].join(''), {
+            }, function(re) {
+                console.log(re);
+                location.href = $('#refer').val() || "/"
+            });
+        });
+        /*
+        使用控制台执行下述脚本快捷登录,供开发调试使用
+        $.post(['/login/', 'ohWYAs6nISCEzsw-f1xIOUexD8jk'].join(''), {}, function(re) {
+            location.href = "/"
+        });
+
+        */
+    </script>
+</body>
+
+</html>
